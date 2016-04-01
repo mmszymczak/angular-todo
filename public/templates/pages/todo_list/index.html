@@ -1,0 +1,17 @@
+<ul class="todo-list">
+	<li ng-repeat="element in list | filter: paramFilters()"
+		ng-class="{'completed': element.completed}"
+		ng-class="{'important': element.isImportant}">
+		<!-- dopracowac te classy -->
+		<div class="view">
+			<input class="toggle" type="checkbox" 
+				   ng-model="element.completed">
+			<label>{{ element.title }}</label>
+			<button class="turn-important"
+					ng-model="element.isImportant"></button>
+			<button class="destroy"
+					ng-click="removeElem($index)">
+			</button>
+		</div>
+	</li>
+</ul>

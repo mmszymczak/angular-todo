@@ -7,65 +7,9 @@
 		<link rel="stylesheet" href="css/index.css">
 	</head>
 	<body ng-app="todo">
-		<section class="todoapp" ng-controller="ElementController as ctrl">
-			<header class="header">
-				<h1>toDoList</h1>
-				<form name="enter" ng-submit="enter.$valid && ctrl.addElem()" novalidate>
-					<input class="new-todo" 
-						placeholder="What needs to be done?" 
-						autofocus 
-						ng-model="ctrl.newElement" required>
-				</form>
-			</header>
-			<section class="main">
-				<input class="toggle-all" type="checkbox"
-						ng-click="ctrl.toggleCompleted()"
-						ng-model="ctrl.allToggle">
-				<label for="toggle-all">Mark all as complete</label>
-				<ul class="todo-list">
-					<li ng-repeat="element in ctrl.list"
-						ng-class="{'completed': element.completed }">
-						<div class="view">
-							<input class="toggle" type="checkbox" 
-								   ng-model="element.completed">
-							<label>{{ element.title }}</label>
-							<button class="destroy" 
-									ng-click="ctrl.removeElem($index)">
-							</button>
-						</div>
-					</li>
-				</ul>
-			</section>
-			<footer class="footer">
-				<span class="todo-count">
-					<ng-pluralize count="ctrl.activeCounter()"
-					when="{'0': 'Time to rest.',
-                     'one': '1 active todo.',
-                     'other': '{} active todos.'}">
-					</ng-pluralize>
-				</span>
-				<ul class="filters">
-					<li>
-						<a href="#/" class="selected">All</a>
-					</li>
-					<li>
-						<a href="#/active">Active</a>
-					</li>
-					<li>
-						<a href="#/important">Important</a>
-					</li>
-					<li>
-						<a href="#/completed">Completed</a>
-					</li>
-				</ul>
-				<button class="clear-completed"
-				ng-click="ctrl.removeCompleted()"
-				ng-hide="ctrl.completedCounter() === 0">Clear completed</button>
-			</footer>
-			<pre style="position: fixed; top:0; left: 0;">
-				{{ ctrl.list | json }}
-			</pre>
-		</section>
+
+		<div ng-view></div>
+
 		<footer class="info">
 			<p>Created by <a href="">Adam Małysz</a></p>
 		</footer>
@@ -73,7 +17,11 @@
 		<script src="js/vendor/angular.min.js"></script>
 		<script src="js/vendor/angular-route.min.js"></script>
 		<script src="js/vendor/jquery.min.js"></script>
+
+		<script src="js/todo.module.js"></script>
+		<script src="js/directives/directives.js"></script>
 		<script src="js/app.js"></script>
+		<script src="js/routes.js"></script>
 
 	</body>
 </html>

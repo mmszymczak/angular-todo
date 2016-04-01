@@ -1,54 +1,64 @@
 (function(){  
-	var app = angular.module("todo", ['ngRoute']);
-	
-	app.controller("ElementController", ['$http', function($http){
-		var vm = this;
+	angular.module("todo")
+	.controller("ElementController", [ '$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 
-		vm.list = [];
+		$scope.list = [];
 		
 		$http.get('/api/todos').success(function(data){
-			vm.list = data;
+			$scope.list = data;
 		});
 		
-		vm.newElement = "";
+		$scope.urlFilter = $routeParams.filter;
 
-		vm.addElem = function(){
-			vm.list.push({title:vm.newElement});
-			vm.newElement = "";
+		$scope.paramFilters = function(){
+			var result = {};
+			switch($routeParams.filter){
+				case 'active': result = {completed: false}; break;
+				case 'completed': result = {completed: true}; break;
+				case 'important': result = {isImportant: true}; break;
+			}
+			return result;
+		}
+		
+		$scope.newElement = "";
+
+		$scope.addElem = function(){
+			$scope.list.push({title:$scope.newElement});
+			$scope.newElement = "";
 		};
 
-		vm.removeElem = function(index){
-			vm.list.splice(index,1);
+		$scope.removeElem = function(index){
+			$scope.list.splice(index,1);
 		};
 
-		vm.toggleCompleted = function(){
-			vm.list.forEach(function(todo){
-				todo.completed = vm.allToggle;
+		$scope.toggleCompleted = function(){
+			$scope.list.forEach(function(todo){
+				todo.completed = $scope.allToggle;
 			});
 		};
 
-		vm.removeCompleted = function(){
-			vm.list = vm.list.filter(function(todo){
+		$scope.removeCompleted = function(){
+			$scope.list = $scope.list.filter(function(todo){
 				return !todo.completed;
 			});
 		};
 
-		vm.activeCounter = function(){
-			var counter = vm.list.filter(function(todo){
+		$scope.activeCounter = function(){
+			var counter = $scope.list.filter(function(todo){
 				return !todo.completed;
 			});
 			return counter.length;
 		};
 
-		vm.completedCounter = function(){
-			var counter = vm.list.filter(function(index){
+		$scope.completedCounter = function(){
+			var counter = $scope.list.filter(function(index){
 				return index.completed;
 			});
 			return counter.length;
 		};
 
-		vm.SAVE = function(){
-			var data = $.param(vm.list);
+		$scope.SAVE = function(){
+			var data = $.param($scope.list);
 			$http({
 			    method: 'POST',
 			    url: '/api/todos',
@@ -59,16 +69,6 @@
 			});
 		};
 
-	}]);
-
-	app.config(['$routeProvider', function($routeProvider){
-		$routeProvider
-		.when('/', {
-			controller: 'ElementController'
-		})
-		.otherwise({
-			redirectTo: '/'
-		});
 	}]);
 
 })();
