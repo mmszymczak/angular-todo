@@ -1,25 +1,31 @@
 (function(){
-	var app = angular.module('directive-module', []);
+	'use strict';
 	
-	app.directive('footerIndex', function(){
+	angular
+		.module('directive-module', [])
+			.directive('footerIndex', footerIndex)
+			.directive('todoList', todoList)
+			.directive('addElem', addElem);
+
+	function footerIndex(){
 		return {
 			restrict: 'E',
 			templateUrl: 'templates/pages/footer/index.html'
-		};
-	});
+		};	
+	}
 
-	app.directive('todoList', function(){
+	 function todoList(){
 		return {
 			restrict: 'E',
 			templateUrl: 'templates/pages/todo_list/index.html'
-		}
-	});
+		};
+	}
 
-	app.directive('addElem', function(){
+	function addElem(){
 		return {
 			restrict: 'E',
 			templateUrl: 'templates/pages/elem_input/index.html'
-		}
-	});
+		};
+	}
 
 })();

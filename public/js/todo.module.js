@@ -1,1 +1,10 @@
-angular.module("todo", ['ngRoute', 'directive-module']);
+(function(){
+	'use strict';
+
+	angular
+		.module("todo", [
+			'ngRoute', 
+			'directive-module'
+		]);
+
+})();

@@ -5,14 +5,13 @@
 	</header>
 	<section class="main">
 		<input class="toggle-all" type="checkbox"
-				ng-click="toggleCompleted()"
-				ng-model="allToggle">
-		<label for="toggle-all"></label>
+				ng-click="vm.toggleCompleted()"
+				ng-model="vm.allToggle">
 		<todo-list></todo-list>
 	</section>
 	<footer-index></footer-index>
 	<pre style="position: fixed; top:0; left: 0;">
-		{{ urlFilter }}
-		{{ list | json }}
+		{{ vm.urlFilter | json}}
+		{{ vm.list | json }}
 	</pre>
 </section>

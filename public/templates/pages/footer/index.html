@@ -1,6 +1,6 @@
 <footer class="footer">
 	<span class="todo-count">
-		<ng-pluralize count="activeCounter()"
+		<ng-pluralize count="vm.activeCounter()"
 		when="{'0': 'Time to rest.',
 		 'one': '1 active todo.', 
 		 'other': '{} active todos.'}">
@@ -8,19 +8,31 @@
 	</span>
 	<ul class="filters">
 		<li>
-			<a href="#/" class="selected">All</a>
+			<a href="#/" 					
+			ng-class="{'selected': !vm.urlFilter}">
+			All
+			</a>			
 		</li>
 		<li>
-			<a href="#/active">Active</a>
+			<a href="#/active"
+			ng-class="{'selected': vm.urlFilter === 'active'}">
+			Active
+			</a>
 		</li>
 		<li>
-			<a href="#/important">Important</a>
+			<a href="#/important"
+			ng-class="{'selected': vm.urlFilter === 'important'}">
+			Important
+			</a>
 		</li>
 		<li>
-			<a href="#/completed">Completed</a>
+			<a href="#/completed"
+			ng-class="{'selected': vm.urlFilter === 'completed'}">
+			Completed
+			</a>
 		</li>
 	</ul>
 	<button class="clear-completed"
-	ng-click="removeCompleted()"
-	ng-hide="completedCounter() === 0">Clear completed</button>
+	ng-click="vm.removeCompleted()"
+	ng-hide="vm.completedCounter() === 0">Clear completed</button>
 </footer>

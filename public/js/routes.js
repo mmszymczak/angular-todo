@@ -1,19 +1,22 @@
 (function(){
+	'use strict';
+	
+	angular
+		.module("todo")
+		.config(config);
 
-	angular.module("todo")
-	.config(['$routeProvider', function($routeProvider){
+	config.$inject = ['$routeProvider']; 
+
+	function config($routeProvider){
 		$routeProvider
-		.when('/', {
-			templateUrl: 'templates/pages/todo_main/index.html',
-			controller: 'ElementController'
-		})
-		.when('/:filter?', {
-			templateUrl: 'templates/pages/todo_main/index.html',
-			controller: 'ElementController'
-		})
-		.otherwise({
-			redirectTo: '/'
-		});
-	}]);
+			.when('/:filter?', {
+				templateUrl: 'templates/pages/todo_main/index.html',
+				controller: 'ElementController',
+				controllerAs: 'vm'
+			})
+			.otherwise({
+				redirectTo: '/'
+			});
+	}
 
 })();

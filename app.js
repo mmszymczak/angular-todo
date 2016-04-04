@@ -8,13 +8,13 @@ app.use(bodyParser.json());
 var DEFAULT_PAGE_LEN = 1000;
 
 var todos = [
-    { id: 1, title: "The first task", completed: false},
-    { id: 2, title: "The second task", completed: true},
-    { id: 3, title: "The third task", completed: false},
-    { id: 4, title: "The fourth task", completed: true},
-    { id: 5, title: "The fifth task", completed: false},
-    { id: 6, title: "The sixth task", completed: true},
-    { id: 7, title: "The seventh task", completed: false}
+    { id: 1, title: "The first task", completed: false, isImportant: false},
+    { id: 2, title: "The second task", completed: true, isImportant: true},
+    { id: 3, title: "The third task", completed: false, isImportant: false},
+    { id: 4, title: "The fourth task", completed: true, isImportant: false},
+    { id: 5, title: "The fifth task", completed: false, isImportant: true},
+    { id: 6, title: "The sixth task", completed: true, isImportant: true},
+    { id: 7, title: "The seventh task", completed: false, isImportant: false}
 ];
 
 // Read list of todos
