@@ -27,5 +27,7 @@
 			templateUrl: 'templates/pages/elem_input/index.html'
 		};
 	}
-
+// DOIT: rozdzielic na pliki
+// DOIT: wydzielic poszczegolne controllery zalezy od innych
+// DOIT: moze cos jeszcze? :D
 })();

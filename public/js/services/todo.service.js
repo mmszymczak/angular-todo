@@ -31,7 +31,6 @@
 			return $http.delete("/api/todos/"+id, id)
             	.then( _successCallback, _errorCallback );
 		}
-
 		//	Private
 		function _successCallback(response){
 			return response.data;
@@ -40,5 +39,4 @@
 			return alert(new Error(response.responseText));
 		}
 	}
-
 })();

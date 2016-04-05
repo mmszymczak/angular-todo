@@ -27,6 +27,8 @@
 		vm.activeCounter = activeCounter;
 		vm.completedCounter = completedCounter;
 		vm.toggleImportant = toggleImportant;
+		vm.saveEdits = saveEdits;
+		vm.editElement = editElement;
 
 		function removeElem(todo){
 			removeFromRemoteData(todo.id);
@@ -93,7 +95,29 @@
         	updateRemoteData(item[0]);
 		}
 
-		/////
+		function editElement(todo){
+			vm.editedTodo = todo;
+			vm.originalTodo = angular.extend({}, todo);
+		};
+
+		function saveEdits(todo, event){
+			if (event === 'blur' && vm.saveEvent === 'submit') {
+				vm.saveEvent = null;
+				return;
+			}
+			vm.saveEvent = event;
+			todo.title = todo.title.trim();
+
+			if (todo.title === vm.originalTodo.title) {
+				vm.editedTodo = null;
+				return;
+			}
+
+			updateRemoteData(todo);
+			vm.editedTodo = null;
+		}
+
+		//	Data functions
         function loadRemoteData(){
             ajaxService.getData()
 	            .then(function(data){
@@ -121,7 +145,7 @@
         			vm.list.splice(vm.list.indexOf(item[0]), 1);
         		});
         }
-        /////
+
 	};
 
 })();
