@@ -9,7 +9,7 @@
 
 	function paramFilters($routeParams){
 		return {
-			actualUrl: function() {
+			actualRoute: function() {
 				return $routeParams.filter;
 			},
 			get: function() {

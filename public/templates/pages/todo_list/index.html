@@ -2,16 +2,17 @@
 	<li ng-repeat="element in vm.list | filter: vm.paramFilter"
 		ng-class="{'completed': element.completed, 
 				   'important': element.isImportant}">
-		<!-- dopracowac te classy -->
+		<!-- DOIT: dopracowac te classy -->
 		<div class="view">
 			<input class="toggle" type="checkbox" 
-				   ng-model="element.completed">
+				   ng-model="element.completed"
+				   ng-click="vm.toggleCompleted(element)">
 			<label>{{ element.title }}</label>
 			<button class="turn-important"
-					ng-click="vm.toggleImportant($index)">
+					ng-click="vm.toggleImportant(element)">
 			</button>
 			<button class="destroy"
-					ng-click="vm.removeElem($index)">
+					ng-click="vm.removeElem(element)">
 			</button>
 		</div>
 	</li>

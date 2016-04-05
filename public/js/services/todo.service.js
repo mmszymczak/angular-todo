@@ -5,9 +5,9 @@
 		.module("todo")
 		.service("ajaxService", ajaxService);
 
-	ajaxService.$inject = ['$http', '$q'];
+	ajaxService.$inject = ['$http'];
 
-	function ajaxService($http, $q){
+	function ajaxService($http){
 		return {
 			getData: getData,
 			postData: postData,
@@ -15,33 +15,30 @@
 			deleteData: deleteData
 		};
 
-		function getData(){
-			var list = [];
-			//var request = 
-			$http.get('/api/todos').success(function(data){
-				return list = data;
-			});
-			return list;
-			//return ( request.then(successCallback, errorCallback) );
+		function getData() {
+            return $http.get("/api/todos")
+            	.then( _successCallback, _errorCallback );
+        }
+		function postData(todo){
+			return $http.post("/api/todos", todo)
+            	.then( _successCallback, _errorCallback );
 		}
-		function postData(){
-
+		function putData(todo){
+			return $http.put("/api/todos/"+todo.id, todo)
+            	.then( _successCallback, _errorCallback );
 		}
-		function putData(){
-			
-		}
-		function deleteData(){
-			
+		function deleteData(id){
+			return $http.delete("/api/todos/"+id, id)
+            	.then( _successCallback, _errorCallback );
 		}
 
-
-
-		// function successCallback(response){
-		// 	return response.data;
-		// }
-		// function errorCallback(response){
-		// 	return $q.reject( "An unknown error occurred." );
-		// }
+		//	Private
+		function _successCallback(response){
+			return response.data;
+		}
+		function _errorCallback(response){
+			return alert(new Error(response.responseText));
+		}
 	}
 
 })();
