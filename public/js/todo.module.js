@@ -3,8 +3,7 @@
 
 	angular
 		.module("todo", [
-			'ngRoute', 
-			'directive-module'
+			'ngRoute'
 		]);
 
 })();

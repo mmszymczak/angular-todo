@@ -1,0 +1,17 @@
+<section class="todoapp">
+	<header class="header">
+		<h1>toDoList</h1>
+		<add-elem></add-elem>
+	</header>
+	<section class="main">
+		<input class="toggle-all" type="checkbox"
+				ng-click="vm.toggleAllCompleted()"
+				ng-model="vm.allToggle">
+		<todo-list></todo-list>
+	</section>
+	<footer-category></footer-category>
+	<pre style="position: fixed; top:0; left: 0;">
+		{{ fc.urlFilter | json}}
+		{{ vm.list | json }}
+	</pre>
+</section>

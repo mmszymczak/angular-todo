@@ -10,9 +10,7 @@
 	function config($routeProvider){
 		$routeProvider
 			.when('/:filter?', {
-				templateUrl: 'templates/pages/todo_main/index.html',
-				controller: 'ElementController',
-				controllerAs: 'vm'
+				templateUrl: 'templates/pages/todo_main/index.html'
 			})
 			.otherwise({
 				redirectTo: '/'

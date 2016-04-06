@@ -1,25 +1,27 @@
 <ul class="todo-list">
-	<li ng-repeat="element in vm.list | filter: vm.paramFilter"
+	<li ng-repeat="element in tl.list | filter: tl.paramFilter"
 		ng-class="{'completed': element.completed, 
 				   'important': element.isImportant,
-				   'editing': element == vm.editedTodo}">
+				   'editing': element == tl.editedTodo}">
 		<div class="view">
 			<input class="toggle" type="checkbox" 
 				   ng-model="element.completed"
-				   ng-click="vm.toggleCompleted(element)">
-			<label ng-dblclick="vm.editElement(element)">{{ element.title }}</label>
+				   ng-click="tl.toggleCompleted(element)">
+			<label ng-dblclick="tl.editElement(element)">{{ element.title }}</label>
 			<button class="turn-important"
-					ng-click="vm.toggleImportant(element)">
+					ng-click="tl.toggleImportant(element)">
 			</button>
 			<button class="destroy"
-					ng-click="vm.removeElem(element)">
+					ng-click="tl.removeElem(element)">
 			</button>
 		</div>
-		<form ng-submit="vm.saveEdits(element, 'submit')">
+		<form ng-submit="tl.saveEdits(element, 'submit')">
 			<input class="edit" 
 				ng-trim="false" 
 				ng-model="element.title"  
-				ng-blur="vm.saveEdits(element, 'blur')">
+				edit-escape="tl.revertEdits(element)"
+				edit-focus="element == tl.editedTodo"
+				ng-blur="tl.saveEdits(element, 'blur')">
 		</form>
 	</li>
 </ul>
